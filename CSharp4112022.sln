@@ -9,10 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp2", "ConsoleApp2\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleIMC", "ConsoleIMC\ConsoleIMC.csproj", "{93E0D7DC-7150-4716-A52E-603BBA8969D3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentos", "Documentos", "{2524DECD-D6B7-4222-AA34-60BA0701AF55}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentacion", "Documentacion", "{2524DECD-D6B7-4222-AA34-60BA0701AF55}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Contenidos\Elementos básicos del Lenguaje C#.pdf = ..\..\Contenidos\Elementos básicos del Lenguaje C#.pdf
-		Recursos.txt = Recursos.txt
+		Documentacion\Elementos básicos del Lenguaje C#.pdf = Documentacion\Elementos básicos del Lenguaje C#.pdf
+		Documentacion\Recursos.txt = Documentacion\Recursos.txt
 	EndProjectSection
 EndProject
 Global

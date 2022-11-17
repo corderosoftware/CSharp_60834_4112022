@@ -6,10 +6,9 @@ namespace ConsoleIMC
     {
         static void Main(string[] args)
         {
-            string NombrePaciente = string.Empty;
-            char Genero='F';
-            double Peso = 0;
-            double Altura = 0;
+            //Creación de un objeto Persona (Instancia de una clase)
+            Paciente paciente = new Paciente(); //Darle vida a la clase
+                       
             double IMC = 0;
             int Valor;
             //Una linea
@@ -31,22 +30,28 @@ namespace ConsoleIMC
 
                 switch (opcion)
                 {
-                    case 1: 
+                    case 1:
+                        System.Console.WriteLine("Indica tu Nro de Documento:");
+                        paciente.NroDoc = System.Console.ReadLine();
+
                         System.Console.WriteLine("Indica tu nombre y apellido:");
-                        NombrePaciente = System.Console.ReadLine();
+                        paciente.NombreApellido = System.Console.ReadLine();
 
                         System.Console.WriteLine("Indica tu Genero (F/M):");
-                        Genero = char.Parse(System.Console.ReadLine());
+                        paciente.Genero = char.Parse(System.Console.ReadLine());
 
                         System.Console.WriteLine("Indica tu peso:");
                         //Peso = float.Parse(System.Console.ReadLine());
-                        Peso = Convert.ToDouble(System.Console.ReadLine());
+                        paciente.Peso = Convert.ToDouble(System.Console.ReadLine());
 
                         System.Console.WriteLine("Indica tu Altura:");
-                        Altura = Convert.ToDouble(System.Console.ReadLine());
+                        paciente.Altura = Convert.ToDouble(System.Console.ReadLine());
 
                         //Aca se calcula el IMC
-                        IMC = CalcularIMC(Peso,Altura);
+                        IMC = CalcularIMC(paciente.Peso,paciente.Altura);
+
+                        //Muestra los datos del Paciente
+                        System.Console.WriteLine(paciente.ShowData());
 
                         //Se muestra el resultado
                         System.Console.WriteLine("Tu IMC es: " + IMC);
@@ -59,7 +64,7 @@ namespace ConsoleIMC
 
             } while (opcion != 2);
 
-            Console.WriteLine($"Hasta luego { GetTitulo(Genero) } { NombrePaciente } , cuidese.");
+            Console.WriteLine($"Hasta luego { GetTitulo(paciente.Genero) } { paciente.NombreApellido } , cuidese.");
 
         }
 

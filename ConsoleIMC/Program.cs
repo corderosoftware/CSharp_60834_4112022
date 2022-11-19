@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 
+
 namespace ConsoleIMC
 {
     internal class Program
@@ -24,8 +25,9 @@ namespace ConsoleIMC
             {
                 Console.WriteLine("Bienvenido IMC V beta 1.0");
                 Console.WriteLine("=========================");
-                Console.WriteLine("1 - Nuevo Diagnostico");
-                Console.WriteLine("2 - Salir");
+                Console.WriteLine("1 - Diagnostico Presencial");
+                Console.WriteLine("2 - Diagnostico Multiple");
+                Console.WriteLine("3 - Salir");
                 opcion = byte.Parse(Console.ReadLine());
 
                 switch (opcion)
@@ -47,25 +49,50 @@ namespace ConsoleIMC
                         System.Console.WriteLine("Indica tu Altura:");
                         paciente.Altura = Convert.ToDouble(System.Console.ReadLine());
 
-                        //Aca se calcula el IMC
-                        IMC = CalcularIMC(paciente.Peso,paciente.Altura);
+                        ShowDiagnostic(paciente);
 
-                        //Muestra los datos del Paciente
-                        System.Console.WriteLine(paciente.ShowData());
+                        System.Console.WriteLine("Presione <Enter> para continuar");
+                        System.Console.ReadKey();
+                        System.Console.Clear();
 
-                        //Se muestra el resultado
-                        System.Console.WriteLine("Tu IMC es: " + IMC);
+                        break;
 
-                        //Le brindamos el diagnostico al Paciente
-                        System.Console.WriteLine($"El diagnóstico es: { ObtenerDiagnostico(IMC) } ");
-                        //System.Console.WriteLine("El diagnótico es: " + ObtenerDiagnostico(IMC)); //Concatenación
+                    case 2: //Procesar multiples pacientes
+
+                        Paciente[] ListaPacientesMultiples = ObtenerPacientes();
+                        System.Console.Clear();
+                        foreach (Paciente pacienteM in ListaPacientesMultiples)
+                        {
+                            ShowDiagnostic(pacienteM);
+                        }
+                        System.Console.WriteLine("Presione <Enter> para continuar");
+                        System.Console.ReadKey();
+                        System.Console.Clear();
                         break;
                 }
 
-            } while (opcion != 2);
+            } while (opcion != 3);
 
             Console.WriteLine($"Hasta luego { GetTitulo(paciente.Genero) } { paciente.NombreApellido } , cuidese.");
 
+        }
+
+
+        static void ShowDiagnostic(Paciente pacienteShow)
+        {
+            double IMC;
+            //Aca se calcula el IMC
+            IMC = CalcularIMC(pacienteShow.Peso, pacienteShow.Altura);
+
+            //Muestra los datos del Paciente
+            System.Console.WriteLine(pacienteShow.ShowData());
+
+            //Se muestra el resultado
+            System.Console.WriteLine("Tu IMC es: " + IMC);
+
+            //Le brindamos el diagnostico al Paciente
+            System.Console.WriteLine($"El diagnóstico es: {ObtenerDiagnostico(IMC)} ");
+           
         }
 
         //Implementar el método que calcula el IMC
@@ -95,7 +122,6 @@ namespace ConsoleIMC
             return Titulo;
         }
 
-
         //Implementar el método para retornar el diagnóstico
         static string ObtenerDiagnostico(double IMC)
         {
@@ -119,6 +145,65 @@ namespace ConsoleIMC
 
             return Diagnostico;
         }
+
+        //Devolver un listado de pacientes
+        static Paciente[] ObtenerPacientes()
+        {
+            Paciente[] ListaPacientes = new Paciente[4];
+
+            //Crear los pacientes y almacenarlos en el Array
+            //Paciente paciente1 = new Paciente();
+            //paciente1.NroDoc = "bvxcbvzbv";
+            //paciente1.NombreApellido = "hhjjhhjg";
+            //paciente1.Peso = 80;
+
+            //Paciente paciente2 = new Paciente();
+            //paciente1.NroDoc = "bvxcbvzbv";
+            //paciente1.NombreApellido = "hhjjhhjg";
+            //paciente1.Peso = 80;
+
+
+            ListaPacientes[0] = new Paciente() { NroDoc = "44343443", NombreApellido = "Victor Cordero", Genero = 'M', Peso = 80, Altura = 1.65 };
+            ListaPacientes[1] = new Paciente() { NroDoc = "21228788", NombreApellido = "Alejo", Genero = 'M', Peso = 60, Altura = 1.40 };
+            ListaPacientes[2] = new Paciente() { NroDoc = "21887878", NombreApellido = "Francisco", Genero= 'M', Peso = 50, Altura = 1.35 };
+            ListaPacientes[3] = new Paciente() { NroDoc = "21888765", NombreApellido = "Pedro", Genero = 'M', Peso = 70, Altura = 1.75 };
+
+
+            return ListaPacientes;
+        }
+
+        //static Paciente[] ObtenerPacientesFor()
+        //{
+        //    Paciente[] ListaPacientes = new Paciente[4];
+
+        //    for (int i = 0; i < ListaPacientes.Length; i++)
+        //    {
+        //        ListaPacientes[i] = new Paciente() { NroDoc = "999999" +i , 
+        //            NombreApellido= "Paciente " + i,
+        //            Peso = 
+        //        };
+        //    }
+
+        //    //Crear los pacientes y almacenarlos en el Array
+        //    Paciente paciente1 = new Paciente();
+        //    paciente1.NroDoc = "bvxcbvzbv";
+        //    paciente1.NombreApellido = "hhjjhhjg";
+        //    paciente1.Peso = 80;
+
+        //    Paciente paciente2 = new Paciente();
+        //    paciente1.NroDoc = "bvxcbvzbv";
+        //    paciente1.NombreApellido = "hhjjhhjg";
+        //    paciente1.Peso = 80;
+
+
+        //    ListaPacientes[0] = paciente1; //new Paciente() { NroDoc = "44343443", NombreApellido = "Victor Cordero", Peso = 80, Altura = 1.65 };
+        //    ListaPacientes[1] = paciente2; //new Paciente() { NroDoc = "21228788", NombreApellido = "Alejo", Peso = 60, Altura = 1.40 };
+        //    ListaPacientes[2] = new Paciente() { NroDoc = "21887878", NombreApellido = "Francisco", Peso = 50, Altura = 1.35 };
+        //    ListaPacientes[3] = new Paciente() { NroDoc = "21888765", NombreApellido = "Pedro", Peso = 70, Altura = 1.75 };
+
+
+        //    return ListaPacientes;
+        //}
 
     }
 }

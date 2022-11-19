@@ -69,7 +69,5 @@ namespace ConsoleIMC
                 "Genero: " + Genero;
 
         }
-
-
     }
 }

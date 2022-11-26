@@ -41,7 +41,7 @@ namespace ConsoleIMC
                 _nroDoc = value;
             }
         }
-        //public string NroDoc { get; set; } //Propiedad autoimplementada
+        //public string NroDoc { get; set; } //Propiedad automaticamenteimplementada
         public string NombreApellido { get; set; }
         //public string NombreApellido { get => _nombreApellido; set => _nombreApellido = value; }
         public string Direccion { get; set; }

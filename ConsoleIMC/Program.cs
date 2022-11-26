@@ -3,7 +3,7 @@
 
 namespace ConsoleIMC
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -96,7 +96,7 @@ namespace ConsoleIMC
         }
 
         //Implementar el método que calcula el IMC
-        static double CalcularIMC(double Peso, double Altura)
+        public static double CalcularIMC(double Peso, double Altura)
         {
             double IMC;
             IMC = Peso / (Altura * Altura);
@@ -125,25 +125,39 @@ namespace ConsoleIMC
         //Implementar el método para retornar el diagnóstico
         static string ObtenerDiagnostico(double IMC)
         {
-            string Diagnostico;
-            if (IMC <= 18.5)
+            string Diagnostico = string.Empty;
+
+            string[,] DiagnosticosEval = ObtenerDiagnosticosBD(); //Obtenemos los diagnosticos de la BD
+
+            for (int f=0; f < DiagnosticosEval.GetLength(0); f++)//Recorre las filas
             {
-                Diagnostico = "Tienes Bajo peso";
-            }
-            else if (IMC > 18.5 && IMC <= 24.9)
-            {
-                Diagnostico = "Tienes un Peso saludable";
-            }
-            else if (IMC > 25 && IMC <= 29.9)
-            {
-                Diagnostico = "Tienes Sobrepeso";
-            }
-            else
-            {
-                Diagnostico = "Tienes Obesidad, ve corriendo al hospital";
+                if (IMC >= double.Parse(DiagnosticosEval[f,0]) && IMC <= double.Parse(DiagnosticosEval[f, 1]))
+                {
+                    Diagnostico = DiagnosticosEval[f,2];
+                    break;
+                }
             }
 
             return Diagnostico;
+
+            //if (IMC <= 18.5)
+            //{
+            //    Diagnostico = "Tienes Bajo peso";
+            //}
+            //else if (IMC > 18.5 && IMC <= 24.9)
+            //{
+            //    Diagnostico = "Tienes un Peso saludable";
+            //}
+            //else if (IMC > 25 && IMC <= 29.9)
+            //{
+            //    Diagnostico = "Tienes Sobrepeso";
+            //}
+            //else
+            //{
+            //    Diagnostico = "Tienes Obesidad, ve corriendo al hospital";
+            //}
+
+
         }
 
         //Devolver un listado de pacientes
@@ -170,6 +184,30 @@ namespace ConsoleIMC
 
 
             return ListaPacientes;
+        }
+
+        //Los datos de diagnostico que vienen de una Base de Datos
+        static string[,] ObtenerDiagnosticosBD()
+        {
+            string[,] diagnosticos = new string[4, 3];
+
+            diagnosticos[0, 0] = "0";
+            diagnosticos[0, 1] = "18,5";
+            diagnosticos[0, 2] = "Bajo peso";
+
+            diagnosticos[1, 0] = "18,6";
+            diagnosticos[1, 1] = "24,9";
+            diagnosticos[1, 2] = "Peso saludable";
+
+            diagnosticos[2, 0] = "25";
+            diagnosticos[2, 1] = "29,9";
+            diagnosticos[2, 2] = "Sobrepeso";
+
+            diagnosticos[3, 0] = "30";
+            diagnosticos[3, 1] = "39,9";
+            diagnosticos[3, 2] = "Obesidad";
+
+            return diagnosticos;
         }
 
         //static Paciente[] ObtenerPacientesFor()

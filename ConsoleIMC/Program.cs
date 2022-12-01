@@ -1,10 +1,12 @@
 ﻿using System.Diagnostics;
-
-
+using IMC.Services;
 namespace ConsoleIMC
 {
     public class Program
     {
+        static Metodos IMCServices = new Metodos();
+
+
         static void Main(string[] args)
         {
             //Creación de un objeto Persona (Instancia de una clase)
@@ -77,12 +79,11 @@ namespace ConsoleIMC
 
         }
 
-
         static void ShowDiagnostic(Paciente pacienteShow)
         {
             double IMC;
             //Aca se calcula el IMC
-            IMC = CalcularIMC(pacienteShow.Peso, pacienteShow.Altura);
+            IMC = IMCServices.CalcularIMC(pacienteShow.Peso, pacienteShow.Altura);
 
             //Muestra los datos del Paciente
             System.Console.WriteLine(pacienteShow.ShowData());
@@ -94,17 +95,10 @@ namespace ConsoleIMC
             System.Console.WriteLine($"El diagnóstico es: {ObtenerDiagnostico(IMC)} ");
            
         }
-
-        //Implementar el método que calcula el IMC
-        public static double CalcularIMC(double Peso, double Altura)
-        {
-            double IMC;
-            IMC = Peso / (Altura * Altura);
-            return IMC;
-        }
+                
 
         //Devolver si es Sr o Sra
-        static string GetTitulo (char Genero)
+        public static string GetTitulo (char Genero)
         {
             string Titulo;
             switch (Genero)

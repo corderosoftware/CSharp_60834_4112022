@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleIMC\ConsoleIMC.csproj" />
     <ProjectReference Include="..\IMC.Services\IMC.Services.csproj" />
   </ItemGroup>
 

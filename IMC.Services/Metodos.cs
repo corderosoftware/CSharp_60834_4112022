@@ -2,6 +2,12 @@
 {
     public class Metodos
     {
+        public static int MyProperty { get; set; }
+        public static double CalcularIVA()
+        {
+            return 24;
+        }
+
         //Método que calcula el IMC
         public double CalcularIMC(double Peso, double Altura)
         {
@@ -50,6 +56,5 @@
 
             return diagnosticos;
         }
-
     }
 }
